@@ -1,11 +1,8 @@
-FROM ubuntu
+FROM python:3.9
 
-RUN apt-get update
-RUN apt-get install -y python3 python3-pip
-RUN pip3 install flask
-RUN mkdir /opt/app
+WORKDIR /code
+COPY ./requirements.txt /code/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+COPY ./app /code/app
 
-#CMD ls -al
-
-ENTRYPOINT FLASK_APP=/opt/app/app.py flask run --host=0.0.0.0
-
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
