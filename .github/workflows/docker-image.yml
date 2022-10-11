@@ -26,4 +26,4 @@ jobs:
     
     -name: Docker push on Docker-Hub
       run:
-        docker push ${{secrets.DOCKER_USER}}/YOUR_DOCKER_HUB_REPO_NAME
+        docker push ${{secrets.DOCKER_USER}}/hello-world
